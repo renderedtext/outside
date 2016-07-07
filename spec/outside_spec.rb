@@ -19,9 +19,9 @@ describe Outside do
       it "wraps the yield in a timeout block" do
         timeout = 10
 
-        expect(Timeout).to receive(:timeout).with(10)
+        expect(Timeout).to receive(:timeout).with(timeout)
 
-        Outside.go({:timeout => 10})
+        Outside.go({:timeout => timeout})
       end
     end
 
