@@ -29,13 +29,13 @@ end
 Default behavior is the following: if the block passed to the method does not finish executing in 5 seconds, it will be stopped and a `Timeout::Error` will be raised.
 
 Possible options for changing the default behavior are:
-- `:handle_timeout` - Method will not propagate `Timeout::Error` in case of a timeout.
-- `:timeout_duration` - Sets a custom timeout time. Default value is 5 seconds. Format is: `{ :timeout_duration => 10 }`
+- `:handle` - Method will not propagate `Timeout::Error` in case of a timeout.
+- `:duration` - Sets a custom timeout time. Default value is 5 seconds. Format is: `{ :duration => 10 }`
 
 Example with options:
 
 ```
-Outside.go(:handle_timeout, { :timeout_duration => 10 }) do
+Outside.go(:handle, { :duration => 10 }) do
   # code
 end
 ```

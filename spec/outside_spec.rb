@@ -21,19 +21,19 @@ describe Outside do
 
         expect(Timeout).to receive(:timeout).with(timeout)
 
-        Outside.go({:timeout => timeout})
+        Outside.go({:duration => timeout})
       end
     end
 
     context "timeout" do
       it "raises the timeout error" do
-        expect { Outside.go({ :timeout => 0.2 }) { sleep 0.5 } }.to raise_error(Timeout::Error)
+        expect { Outside.go({ :duration => 0.2 }) { sleep 0.5 } }.to raise_error(Timeout::Error)
       end
     end
 
     context "exception handling enabled" do
       it "handles the timeout error" do
-        expect { Outside.go(:handle_timeout, { :timeout => 0.2 }) { sleep 0.5 } }.not_to raise_error
+        expect { Outside.go(:handle, { :duration => 0.2 }) { sleep 0.5 } }.not_to raise_error
       end
     end
   end

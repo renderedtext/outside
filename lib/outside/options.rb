@@ -5,17 +5,17 @@ module Outside
 
     DEFAULT_TIMEOUT = 5
 
-    def timeout_duration(options)
+    def duration(options)
       options
         .select { |option| option.is_a?(Hash) }
         .map(&:first)
-        .select { |key, value| key == :timeout }
+        .select { |key, value| key == :duration }
         .map { |key, value| value }
         .first || DEFAULT_TIMEOUT
     end
 
-    def handle_timeout?(options)
-      options.any? { |arg| arg == :handle_timeout }
+    def handle?(options)
+      options.any? { |arg| arg == :handle }
     end
 
   end

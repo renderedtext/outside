@@ -7,12 +7,12 @@ module Outside
   module_function
 
   def go(*options)
-    timeout_duration = Options.timeout_duration(options)
-    handle_timeout   = Options.handle_timeout?(options)
+    duration = Options.duration(options)
+    handle   = Options.handle?(options)
 
-    Timeout.timeout(timeout_duration) { yield }
+    Timeout.timeout(duration) { yield }
   rescue Timeout::Error => exception
-    raise exception unless handle_timeout
+    raise exception unless handle
   end
 
 end

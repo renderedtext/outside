@@ -4,28 +4,28 @@ describe Outside do
 
   subject { Outside::Options }
 
-  describe ".timeout_duration" do
-    it "returns the set timeout" do
-      return_value = subject.timeout_duration([])
+  describe ".duration" do
+    it "returns the set timeout duration" do
+      return_value = subject.duration([])
 
       expect(return_value).to eql(5)
     end
 
     context "custom timeout" do
-      it "returns the custom timeout" do
+      it "returns the custom timeout duration" do
         timeout = 10
 
-        return_value = subject.timeout_duration([{:timeout => timeout}])
+        return_value = subject.duration([{:duration => timeout}])
 
         expect(return_value).to eql(timeout)
       end
     end
   end
 
-  describe ".handle_timeout?" do
+  describe ".handle?" do
     context "handle it" do
       it "returns true" do
-        return_value = subject.handle_timeout?([:handle_timeout])
+        return_value = subject.handle?([:handle])
 
         expect(return_value).to be true
       end
@@ -33,7 +33,7 @@ describe Outside do
 
     context "don't handle it" do
       it "returns false" do
-        return_value = subject.handle_timeout?([])
+        return_value = subject.handle?([])
 
         expect(return_value).to be false
       end
