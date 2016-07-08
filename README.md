@@ -1,5 +1,11 @@
 # Outside
 
+![Kindergarten Cop](http://www.showbiz411.com/wp-content/uploads/2015/06/Kindergarten-Cop-1-DI.jpg)
+
+Watches after the connections leaving your system and makes sure they find their way back home.
+
+## Description
+
 Currently wraps outbound connections into a timeout block. The idea is to add all of the generic things that should wrap connections right here. Feel free to expand the gem.
 
 ## Installation
@@ -42,12 +48,20 @@ Possible options for changing the default behavior are:
 All temporal values are in seconds.
 
 Interval calculation:
-`iteration_interval = random_factor * (interval_factor * previous_iteration_interval + interval_increment)`
+```
+iteration_interval = random_factor * (interval_factor * previous_iteration_interval + interval_increment)
+```
 
 Example with options:
 
 ```
-Outside.go({ :duration => 10, :retry_count => 3, :retry_interval => 5 }) do
+options = {
+  :iteration_limit => 10,
+  :retry_count => 3,
+  :interval_duration => 5
+}
+
+Outside.go(options) do
   # code
 end
 ```
