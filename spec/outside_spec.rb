@@ -13,6 +13,20 @@ describe Outside do
       Outside.go
     end
 
+    context "return value" do
+      context "successful execution" do
+        it "returns the value of execution" do
+          expect(Outside.go { 5 }).to eql(5)
+        end
+      end
+
+      context "unsuccessful execution" do
+        it "returns nil" do
+          expect(Outside.go({ :duration => 0.1, :handle => true }) { sleep 1; 5 }).to be nil
+        end
+      end
+    end
+
     context "custom timeout" do
       it "wraps the yield in a timeout block" do
         timeout = 10
