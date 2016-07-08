@@ -1,11 +1,15 @@
 module Outside
   class Execution
 
+    DEFAULT_TIMEOUT = 5
+    DEFAULT_RETRY_COUNT = 0
+    DEFAULT_RETRY_INTERVAL = 0
+
     def initialize(options)
-      @duration = Options.duration(options)
-      @retry_interval = Options.retry_interval(options)
-      @retry_count = Options.retry_count(options)
-      @handle = Options.handle?(options)
+      @duration = options[:duration] || DEFAULT_TIMEOUT
+      @retry_count = options[:retry_count] || DEFAULT_RETRY_COUNT
+      @retry_interval = options[:retry_interval] || DEFAULT_RETRY_INTERVAL
+      @handle = options[:handle] || false
     end
 
     def run

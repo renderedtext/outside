@@ -31,7 +31,7 @@ describe Outside do
 
     context "exception handling enabled" do
       it "handles the timeout error" do
-        expect { Outside.go(:handle, { :duration => 0.2 }) { sleep 0.5 } }.not_to raise_error
+        expect { Outside.go({ :handle => true, :duration => 0.2 }) { sleep 0.5 } }.not_to raise_error
       end
     end
 
@@ -44,7 +44,7 @@ describe Outside do
         it "does not retry" do
           expect(Timeout).to receive(:timeout).exactly(1).times
 
-          Outside.go(:handle, { :retry_count => 0 })
+          Outside.go({ :handle => true, :retry_count => 0 })
         end
       end
 
@@ -54,7 +54,7 @@ describe Outside do
 
           expect(Timeout).to receive(:timeout).exactly(n + 1).times
 
-          Outside.go(:handle, { :retry_count => n })
+          Outside.go({ :handle => true, :retry_count => n })
         end
       end
 
@@ -62,7 +62,7 @@ describe Outside do
         it "does not sleep" do
           expect_any_instance_of(Outside::Execution).to receive(:sleep).with(0)
 
-          Outside.go(:handle, { :retry_count => 1 })
+          Outside.go({ :handle => true, :retry_count => 1 })
         end
       end
 
@@ -72,7 +72,7 @@ describe Outside do
 
           expect_any_instance_of(Outside::Execution).to receive(:sleep).with(1)
 
-          Outside.go(:handle, { :retry_count => 1 }, { :retry_interval => 1})
+          Outside.go({ :handle => true, :retry_count => 1, :retry_interval => 1})
         end
       end
     end
