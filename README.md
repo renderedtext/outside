@@ -29,15 +29,25 @@ end
 Default behavior is the following: if the block passed to the method does not finish executing in the given time (default is 5 seconds), it will be stopped and a `Timeout::Error` will be raised.
 
 Possible options for changing the default behavior are:
-- `:handle` - `Timeout::Error` will not be raised in case of a timeout; `nil` value will be returned.
-- `:duration` - Sets a custom timeout time. Default value is 5 seconds.
-- `:retry_count` - Sets a custom retry count. Default is 0.
-- `:retry_interval` - Sets a custom interval between retries. Default is 0.
+- `:iteration_limit` - Timeout duration for one iteration. Default value is 5 seconds.
+- `:total_limit` - Timeout duration for all of iterations (first one plus the retries). Default value is 3600 seconds (1 hour).
+- `:retry_count` - Retry count. Default is 0.
+- `:interval_duration` - Interval between retries. Default is 0.
+- `:interval_increment` - Value by which the interval is incremented between retries. Default is 0.
+- `:interval_factor` - Factor by which the interval is multiplied between retries. Default is 1.
+- `:interval_randomness` - Range of randomness for the random factor (see interval calculation below). Random factor will be a number in the range of (1 - interval_randomness, 1 + interval_randomness). Default is 0, meaning that the random factor will be 1 and therefore the interval will remain unchanged.
+- `:interval_limit` - Maximum interval value. Not set by default.
+- `:handle_timeout` - Sets if `Timeout::Error` will be raised in case of a timeout. If it is false, it will not raise anything and it will return `nil`. Default value is true.
+
+All temporal values are in seconds.
+
+Interval calculation:
+`iteration_interval = random_factor * (interval_factor * previous_iteration_interval + interval_increment)`
 
 Example with options:
 
 ```
-Outside.go({ :handle => true, :duration => 10, :retry_count => 3, :retry_interval => 5 }) do
+Outside.go({ :duration => 10, :retry_count => 3, :retry_interval => 5 }) do
   # code
 end
 ```
