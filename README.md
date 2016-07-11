@@ -41,7 +41,7 @@ Possible options for changing the default behavior are:
 - `:interval_duration` - Interval between retries. Default is 0.
 - `:interval_increment` - Value by which the interval is incremented between retries. Default is 0.
 - `:interval_factor` - Factor by which the interval is multiplied between retries. Default is 1.
-- `:interval_randomness` - Range of randomness for the random factor (see interval calculation below). Random factor will be a number in the range of (1 - interval_randomness, 1 + interval_randomness). Default is 0, meaning that the random factor will be 1 and therefore the interval will remain unchanged.
+- `:interval_randomness` - Range of randomness for the random factor (see interval calculation below). It is a number between 0 and 1. Random factor will be a number in the range of (1 - interval_randomness, 1 + interval_randomness). Default is 0, meaning that the random factor will be 1 and therefore the interval will remain unchanged.
 - `:interval_limit` - Maximum interval value. Not set by default.
 - `:handle_timeout` - Sets if `Timeout::Error` will be raised in case of a timeout. If it is false, it will not raise anything and it will return `nil`. Default value is true.
 

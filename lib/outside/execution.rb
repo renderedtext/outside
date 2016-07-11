@@ -41,8 +41,10 @@ module Outside
     private
 
     def random_factor
-      range_min = 1 - @interval_randomness
-      range_max = 1 + @interval_randomness
+      randomness = [[@interval_randomness, 1].min, 0].max
+
+      range_min = 1 - randomness
+      range_max = 1 + randomness
 
       Random.rand(range_min..range_max)
     end
