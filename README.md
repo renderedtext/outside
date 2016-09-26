@@ -2,11 +2,11 @@
 
 ![Kindergarten Cop](http://www.showbiz411.com/wp-content/uploads/2015/06/Kindergarten-Cop-1-DI.jpg)
 
-Watches after the connections leaving your system and makes sure they find their way back home.
+Watches after your blocks of code and makes sure that they find their way back home.
 
 ## Description
 
-Currently wraps outbound connections into a timeout block. The idea is to add all of the generic things that should wrap connections right here. Feel free to expand the gem.
+Currently wraps blocks of code (for example those handling outbound connections) into a timeout block. The idea is to add all of the generic things that should wrap connections and similar cases right here. Feel free to expand the gem.
 
 ## Installation
 
